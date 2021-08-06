@@ -5,7 +5,7 @@ import './PlaygroundPage.css'
 import WordArt from '../../components/WordArt/WordArt';
 import WordArtControls from '../../components/WordArtControls/WordArtControls';
 // Utils
-import { createWordArt, getOneWordArt, deleteOneWordArt } from '../../utils/wordArtUtils';
+import { createWordArt, getOneWordArt, deleteOneWordArt, updateWordArt } from '../../utils/wordArtUtils';
 import { loadFont } from '../../utils/fontUtils';
 
 
@@ -66,9 +66,9 @@ export default class PlaygroundPage extends React.Component {
     });
   };
 
-  handleSaveWordArt = () =>{
+  handleSaveWordArt = async () =>{
     if (this.props.user){
-      createWordArt(this.state)
+      console.log(await createWordArt(this.state))
       this.props.history.push('/')
     }
     else{
@@ -76,9 +76,19 @@ export default class PlaygroundPage extends React.Component {
     }
   }
 
-  handleDeleteWordArt = () =>{
+  handleUpdateWordArt = async () =>{
     if (this.props.user){
-      deleteOneWordArt(this.props.id)
+      await updateWordArt(this.state)
+      this.props.history.push('/')
+    }
+    else{
+      this.setState({err:'Please login to update!'})
+    }
+  }
+
+  handleDeleteWordArt = async () =>{
+    if (this.props.user){
+      await deleteOneWordArt(this.props.id)
       this.props.history.push('/')
     }
   }
@@ -91,11 +101,18 @@ export default class PlaygroundPage extends React.Component {
             <WordArt {...this.state}/>
           </div>
           <button onClick={this.handleSaveWordArt}>
-            Save to gallery
+            {this.props.id ? 'Save a copy to gallery' : 'Save to gallery'}
           </button>
-          {/* <button onClick={this.handleDeleteWordArt}>
-            Delete
-          </button> */}
+          {this.state.user && this.state.user._id === this.props.user._id && 
+            <>
+              <button onClick={this.handleUpdateWordArt}>
+                Update
+              </button>
+              <button onClick={this.handleDeleteWordArt}>
+                Delete
+              </button>
+            </>
+          }
           <div>{this.state.err}</div>
           <p>
             <a 

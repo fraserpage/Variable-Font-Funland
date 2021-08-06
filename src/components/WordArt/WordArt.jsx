@@ -69,10 +69,15 @@ function easeInOutQuad(x) {
 
 export default function WordArt(props){
   return(
+    <>
     <div className="word-art" style={wordArtStyle(props)}>
       {props.text.split('').map((char,i)=>(
         <span key={i} style={wordArtCharStyle(props,i)}>{char}</span>
       ))}
     </div>
+    <div className="attrib">
+      {props.user && `created by ${props.user.name}  ${String.fromCharCode(8212)}`} font: {props.font}
+    </div>
+    </>
   )
 }

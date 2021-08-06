@@ -1,8 +1,13 @@
-import { post, get, deleteOne } from "./fetchUtils";
+import { post, get, put, deleteOne } from "./fetchUtils";
 
 export async function createWordArt(data){
   delete data['_id']
   let wordArt = await post('/api/word-art', data)
+  return wordArt
+}
+
+export async function updateWordArt(data){
+  let wordArt = await put(`/api/word-art/${data._id}`, data)
   return wordArt
 }
 
