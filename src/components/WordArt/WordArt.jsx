@@ -16,6 +16,7 @@ const wordArtStyle = (props) => {
     styleObj['lineHeight'] = 0
   }
   styleObj['whiteSpace'] = 'pre-line';
+  styleObj['wordBreak'] = 'break-word';
   styleObj['fontFamily'] = props.font
   return styleObj
 }
