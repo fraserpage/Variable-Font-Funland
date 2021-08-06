@@ -5,7 +5,7 @@
   --casl: 0;
 }
 
-* {
+*:not(.word-art>span){
   font-variation-settings: "wght" var(--wght),
                            "slnt" var(--slnt),
                            "MONO" var(--mono),
@@ -18,17 +18,16 @@ body{
 }
 
 #root {
-  display: flex;
-  min-height: 100vh;
 }
 
 nav {
   display: flex;
-  flex-direction: column;
   padding: 1em;
+  width: 100%;
 }
 main.App{
   flex: 1;
+  margin: 0 5vmin
 }
 
 a#logo {
