@@ -9,7 +9,6 @@ export default function StylePointsControls(props){
   const values = props.animations[animation].stylePoints.map(s=>(
     {value: s.point, label: s.point*100+'%'}
   ))
-  console.log(values)
 
   return(
     <>

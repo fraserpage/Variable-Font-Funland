@@ -41,7 +41,6 @@ const handleAddStylePoint = (props) => {
     length = animations[animation].stylePoints.length
     let newPoint = animations[animation].stylePoints[length - 3].point + 0.2
     newPoint = newPoint > 1 ? 0.99 : newPoint
-    console.log(newPoint)
     animations[animation].stylePoints[length - 2].point = newPoint
     newCurr = length - 2
   }
@@ -76,7 +75,6 @@ export default function WordArtControls(props){
   const animation = props.currentlyEditing.animation
   const stylePoint = props.currentlyEditing.stylePoint
   const currentStyle = props.animations[animation].stylePoints[stylePoint]
-  console.log(currentStyle)
   const styleCtrlPts = props.animations[animation].stylePoints.map((s,i)=>(
     {value: s.point, label: s.point*100+'%', index: i}
   ))
