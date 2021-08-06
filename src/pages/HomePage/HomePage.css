@@ -18,3 +18,11 @@
   font-size: 6vmin;
   margin-bottom: var(--gutter);
 }
+
+.masonry-grid_item a{
+  color: black;
+  text-decoration: none;
+}
+.masonry-grid_item a:hover{
+  color: blue;
+}

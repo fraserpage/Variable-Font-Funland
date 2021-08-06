@@ -1,0 +1,16 @@
+.rc-slider-handle {
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.rc-slider-handle:hover,
+.rc-slider-handle:active,
+.rc-slider-handle-click-focused:focus,
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging  {
+  border: 2px solid blue;
+  box-shadow: var(--box-shadow), 0px 0 0 3px blue;
+}
+
+.rc-slider-track {
+  background-color: black;
+}
