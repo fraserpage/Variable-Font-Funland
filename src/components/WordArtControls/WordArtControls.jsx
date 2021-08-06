@@ -2,6 +2,7 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css';
+import './WordArtControls.css'
 import Select from 'react-select'
 import FontOptions from '../FontOptions/FontOptions';
 import StylePointsControls from '../StylePointsControls/StylePointsControls';
@@ -70,7 +71,7 @@ export default function WordArtControls(props){
     <div>
 
       <div>
-        <button onClick={()=>handleAddStylePoint(props)}>Add style point</button> 
+        <button className='small' onClick={()=>handleAddStylePoint(props)}>Add style point</button> 
       </div>
       
       {props.animations[animation].stylePoints.map((s,i) =>(
@@ -101,6 +102,7 @@ export default function WordArtControls(props){
             id='letter-spacing' 
             value={currentStyle.letterSpacing}
             min={-0.2} max={0.5} marks={{0:''}} step={0.01}
+            dotStyle={{borderColor:'black'}}
             onChange={(e)=>handleSlider(e,'letterSpacing',props)} 
           />
         </li>
