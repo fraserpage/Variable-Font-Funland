@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import {attemptLogin} from '../../utils/authUtils'
 
-export default class LoginPage extends Component {
+export default class LoginModal extends Component {
   state = {
     email: '',
     password: '',
@@ -17,24 +17,18 @@ export default class LoginPage extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
-      let token = await attemptLogin({ 
+      let userDoc = await attemptLogin({ 
         email: this.state.email, 
         password: this.state.password
       })
-      console.log(token)
-      if (token && !token._id) {
-        throw token;
-      } 
-      else {
-        this.props.setUserInState(token)
-        this.props.history.push('/')
-      }
-    
+      this.props.setUserInState(userDoc)
+      this.props.handleShowModal(null)
   }
 
   render() {
     return (
-      <div>
+      <div className='modal'>
+      <div className='modal-close' onClick={()=>this.props.handleShowModal(null)}>x</div>
         <div className="form-container" onSubmit={this.handleSubmit}>
           <form autoComplete="off" >
             <label>Email</label>

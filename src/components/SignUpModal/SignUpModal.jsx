@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { registerNewUser } from '../../utils/authUtils';
 
-export default class SignUpPage extends Component {
+export default class SignUpModal extends Component {
   state = {
     name: '',
     email: '',
@@ -26,9 +26,10 @@ export default class SignUpPage extends Component {
         password: this.state.password
       })
       this.props.setUserInState(userDoc)
+      this.props.handleShowModal(null)
     } 
     catch (err) {
-      console.log(err)
+      // console.log(err)
       if (err.code === 11000 && err.keyPattern.email){
         this.setState({ error: 'That email is already registered!' });
       }
@@ -41,7 +42,8 @@ export default class SignUpPage extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
+      <div className='modal'>
+        <div className='modal-close' onClick={()=>this.props.handleShowModal(null)}>x</div>
         <div className="form-container">
           <form autoComplete="off" onSubmit={this.handleSubmit}>
             <label>Name</label>
