@@ -1,3 +1,5 @@
+import './WordArt.css'
+
 const wordArtStyle = (props) => {
   const styleObj = {}
   const stylePoints = props.animations[0].stylePoints

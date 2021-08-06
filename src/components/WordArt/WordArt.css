@@ -1,0 +1,6 @@
+.word-art > span:last-child:after {
+  display: block;
+  content: '\00a0';
+  line-height: 1em;
+  border-bottom: 1px solid;
+}
