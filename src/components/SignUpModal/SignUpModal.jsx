@@ -25,11 +25,13 @@ export default class SignUpModal extends Component {
         email: this.state.email, 
         password: this.state.password
       })
+      if(userDoc && !userDoc._id){
+        throw userDoc
+      }
       this.props.setUserInState(userDoc)
       this.props.handleShowModal(null)
     } 
     catch (err) {
-      // console.log(err)
       if (err.code === 11000 && err.keyPattern.email){
         this.setState({ error: 'That email is already registered!' });
       }
