@@ -20,7 +20,6 @@ export async function get(url){
   const fetchOptions = jwt ? { 
     headers: {'Authorization': 'Bearer ' + jwt} 
   } : {}
-  console.log(url, fetchOptions)
   const fetchResponse = await fetch(url, fetchOptions)
   let data = await fetchResponse.json();
   if (!fetchResponse.ok) throw data;
