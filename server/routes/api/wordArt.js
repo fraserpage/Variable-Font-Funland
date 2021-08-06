@@ -5,5 +5,6 @@ const wordArtCtrl = require('../../controllers/wordArt');
 // '/api/word-art/'
 router.post('/', wordArtCtrl.create)
 router.get('/', wordArtCtrl.index)
+router.get('/:id', wordArtCtrl.show)
 
 module.exports = router;
