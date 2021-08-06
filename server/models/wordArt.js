@@ -6,8 +6,13 @@ const wordArtSchema = new mongoose.Schema({
     required: true,
     maxLength:30
   },
-  props : [{
-    prop : String,
+  font: {
+    type: String, 
+    required: true,
+    maxLength:30
+  },
+  vars : [{
+    var : String,
     val : Number
      }]
 }, {
