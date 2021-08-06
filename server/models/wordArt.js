@@ -25,7 +25,10 @@ const wordArtSchema = new mongoose.Schema({
       lineHeight: Number,
       vars : [{
         var : String,
-        val : Number
+        val : Number,
+        min : Number,
+        max : Number,
+        step : Number,
        }]
     }]
   }],

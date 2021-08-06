@@ -16,13 +16,24 @@ export default class LoginModal extends Component {
   };
 
   handleSubmit = async (evt) => {
-    evt.preventDefault();
+    try{
+      evt.preventDefault();
       let userDoc = await attemptLogin({ 
         email: this.state.email, 
         password: this.state.password
       })
+      if(userDoc && !userDoc._id){
+        throw userDoc
+      }
       this.props.setUserInState(userDoc)
       this.props.handleShowModal(null)
+    }
+    catch(err){
+      this.setState({
+        error: err
+      })
+    }
+    
   }
 
   render() {
@@ -39,7 +50,6 @@ export default class LoginModal extends Component {
           </form>
         </div>
         <p className="error-message">&nbsp;{this.state.error}</p>
-        <a href="/sign-up">Sign up</a>
       </div>
     );
   }

@@ -6,5 +6,6 @@ const wordArtCtrl = require('../../controllers/wordArt');
 router.post('/', wordArtCtrl.create)
 router.get('/', wordArtCtrl.index)
 router.get('/:id', wordArtCtrl.show)
+router.delete('/:id', wordArtCtrl.show)
 
 module.exports = router;

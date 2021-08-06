@@ -1,6 +1,5 @@
 import './HomePage.css'
 import { Component } from "react";
-import WordArt from "../../components/WordArt/WordArt";
 import WordArtLink from '../../components/WordArtLink/WordArtLink';
 import { getAllWordArt } from "../../utils/wordArtUtils";
 import { loadFont } from "../../utils/fontUtils";

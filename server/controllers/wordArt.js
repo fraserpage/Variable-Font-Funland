@@ -3,7 +3,8 @@ const WordArt = require('../models/wordArt')
 module.exports = {
   index,
   create,
-  show
+  show,
+  delete: deleteOne
 }
 
 async function create(req,res){
@@ -24,4 +25,9 @@ async function index(req,res){
 async function show(req,res){
   const wordArt = await WordArt.findById(req.params.id)
   res.status(200).json(wordArt)
+}
+
+async function deleteOne(req,res){
+  await WordArt.deleteOne({ _id: req.params.id, user: req.user._id} )
+  res.status(200).json('deleted')
 }

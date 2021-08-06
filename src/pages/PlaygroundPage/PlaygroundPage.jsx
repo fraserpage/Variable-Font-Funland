@@ -5,9 +5,8 @@ import './PlaygroundPage.css'
 import WordArt from '../../components/WordArt/WordArt';
 import WordArtControls from '../../components/WordArtControls/WordArtControls';
 // Utils
-import { createWordArt } from '../../utils/wordArtUtils';
-import { getFontProps, loadFont } from '../../utils/fontUtils';
-import { getOneWordArt } from "../../utils/wordArtUtils";
+import { createWordArt, getOneWordArt, deleteOneWordArt } from '../../utils/wordArtUtils';
+import { loadFont } from '../../utils/fontUtils';
 
 
 
@@ -77,6 +76,13 @@ export default class PlaygroundPage extends React.Component {
     }
   }
 
+  handleDeleteWordArt = () =>{
+    if (this.props.user){
+      deleteOneWordArt(this.props.id)
+      this.props.history.push('/')
+    }
+  }
+
   render(){
     return(
       <div className="playground">
@@ -87,6 +93,9 @@ export default class PlaygroundPage extends React.Component {
           <button onClick={this.handleSaveWordArt}>
             Save to gallery
           </button>
+          {/* <button onClick={this.handleDeleteWordArt}>
+            Delete
+          </button> */}
           <div>{this.state.err}</div>
           <p>
             <a 

@@ -44,6 +44,7 @@ class App extends Component {
             <Route path='/playground/:id' render={(props) => (
               <PlaygroundPage 
                 locationState={props.location.state} 
+                {...props} 
                 id={props.match.params.id} 
                 user={this.state.user}
               />

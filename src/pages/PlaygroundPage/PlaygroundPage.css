@@ -1,11 +1,19 @@
-.playground {
-  display: flex;
-  gap: 5vmin;
-  margin: 0 -3vmin;
-}
 
-.sidebar {order: -1;}
-
-.main {
-  flex: 1;
+@media screen and (min-width:600px) {
+  .playground {
+    display: flex;
+    gap: 5vmin;
+    margin: 0 -3vmin;
+  }
+  
+  .sidebar {
+    order: -1;
+    max-height: calc(100vh - 71px);
+    overflow: auto;
+    padding: 0.5em;
+  }
+  
+  .main {
+    flex: 1;
+  }
 }
