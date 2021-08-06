@@ -17,7 +17,7 @@ export default function Nav(props){
       </div>
      
       {props.user?
-        <UserLogOut user={props.user}/>
+        <UserLogOut user={props.user} setUserInState={props.setUserInState}/>
         :
         <>
           <div>
