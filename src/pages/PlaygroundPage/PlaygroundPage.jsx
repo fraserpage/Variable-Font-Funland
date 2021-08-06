@@ -67,6 +67,16 @@ export default class PlaygroundPage extends React.Component {
     });
   };
 
+  handleSaveWordArt = () =>{
+    if (this.props.user){
+      createWordArt(this.state)
+      this.props.history.push('/')
+    }
+    else{
+      this.setState({err:'Please login to save!'})
+    }
+  }
+
   render(){
     return(
       <div className="playground">
@@ -74,9 +84,10 @@ export default class PlaygroundPage extends React.Component {
           <div style={{fontSize:'10vmin'}}>
             <WordArt {...this.state}/>
           </div>
-          <button onClick={()=>createWordArt(this.state)}>
+          <button onClick={this.handleSaveWordArt}>
             Save to gallery
           </button>
+          <div>{this.state.err}</div>
           <p>
             <a 
               href={`https://fonts.google.com/specimen/${(this.state.font).replace(' ','+')}`} 
