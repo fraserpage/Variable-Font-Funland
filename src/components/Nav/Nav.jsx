@@ -1,32 +1,24 @@
+import './Nav.css'
 import UserLogOut from "../UserLogOut/UserLogOut";
+import Logo from '../Logo/Logo';
 
 export default function Nav(props){
   return(
     <nav>
-      <div>
-        <a id="logo" href="/">
-          <span>V</span>
-          <span>F</span>
-          <span>Funland</span>
-        </a>
-        <ul>
-          <li>
-            <a href="/playground">Playground</a>
-          </li>
-        </ul>
-      </div>
+      <Logo/>
+
+      <a href="/playground">Playground</a>
      
       {props.user?
-        <UserLogOut user={props.user} setUserInState={props.setUserInState}/>
+        <UserLogOut 
+          user={props.user} 
+          setUserInState={props.setUserInState}
+        />
         :
-        <>
-          <div>
-            <a href="/login">Login</a>
-          </div>
-          <div>
-            <a href="/sign-up">Sign up</a>
-          </div>
-        </>
+        <div className='UserLogOut'>
+            <span className='link' onClick={()=>props.handleShowModal('login')}>Login</span>
+            <span className='link' onClick={()=>props.handleShowModal('signup')}>Sign up</span>
+        </div>
       }
     </nav>
   )
