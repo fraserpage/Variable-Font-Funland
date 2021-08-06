@@ -25,10 +25,9 @@ const handleAddStylePoint = (props) => {
   const animations = props.animations
   let length = animations[animation].stylePoints.length
   let newCurr = 0
+
   if (length === 1){
-    // save the new length of the stylePoints list
     length = animations[animation].stylePoints.push(
-      // push a copy of stylePoint 0 to stylePoints
       _.cloneDeep(animations[animation].stylePoints[0])
     )
     // set the new style point at 100%
@@ -46,6 +45,7 @@ const handleAddStylePoint = (props) => {
     animations[animation].stylePoints[length - 2].point = newPoint
     newCurr = length - 2
   }
+
   const currentlyEditing = props.currentlyEditing
   currentlyEditing.stylePoint = newCurr
   props.setPlaygroundState({ 
@@ -83,11 +83,7 @@ export default function WordArtControls(props){
 
   return(
     <div>
-
-
-
       <ul id='controls'>
-
         <li>
           <button className='small' onClick={()=>handleAddStylePoint(props)}>Add style point</button> 
           
