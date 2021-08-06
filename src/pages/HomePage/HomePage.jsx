@@ -1,6 +1,7 @@
 import './HomePage.css'
 import { Component } from "react";
 import WordArt from "../../components/WordArt/WordArt";
+import WordArtLink from '../../components/WordArtLink/WordArtLink';
 import { getAllWordArt } from "../../utils/wordArtUtils";
 import { loadFont } from "../../utils/fontUtils";
 import Masonry from 'react-masonry-css'
@@ -30,7 +31,7 @@ export default class HomePage extends Component{
         columnClassName="masonry-grid_column">
         {this.state.wordArt.map(w => (
             <div key={w._id} className="masonry-grid_item">
-              <WordArt  {...w} />
+              <WordArtLink {...w}/>
             </div>
           ))}
       </Masonry>
