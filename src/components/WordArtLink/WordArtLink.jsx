@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import WordArt from "../WordArt/WordArt";
 
 export default function WordArtLink(props){
   return(
@@ -6,7 +7,7 @@ export default function WordArtLink(props){
       pathname: `/playground/${props._id}`,
       state: props
     }}>
-      <WordArt>{props.text}</WordArt>
+      <WordArt {...props}/>
     </Link>
   )
 }
