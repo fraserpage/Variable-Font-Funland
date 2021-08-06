@@ -4,6 +4,7 @@ import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css';
 import Select from 'react-select'
 import FontOptions from '../FontOptions/FontOptions';
+import StylePointsControls from '../StylePointsControls/StylePointsControls';
 
 const List = styled.ul`
   list-style: none;
@@ -78,6 +79,8 @@ export default function WordArtControls(props){
           {s.point}
         </p>
       ))}
+
+      <StylePointsControls {...props} />
 
       <List id='controls'>
         <li>
