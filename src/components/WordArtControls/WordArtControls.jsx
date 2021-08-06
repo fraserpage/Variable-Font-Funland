@@ -1,18 +1,11 @@
 import _ from 'lodash';
-import styled from 'styled-components';
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css';
 import './WordArtControls.css'
 import Select from 'react-select'
 import FontOptions from '../FontOptions/FontOptions';
-import StylePointsControls from '../StylePointsControls/StylePointsControls';
 
-const List = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: 15rem;
-`
+
 const handleSlider = (e,i, props) => {
   const animation = props.currentlyEditing.animation
   const stylePoint = props.currentlyEditing.stylePoint
@@ -30,14 +23,31 @@ const handleSlider = (e,i, props) => {
 const handleAddStylePoint = (props) => {
   const animation = props.currentlyEditing.animation
   const animations = props.animations
-  // save the new length of the stylePoints list
-  const length = animations[animation].stylePoints.push(
-    // push a copy of stylePoint 0 to stylePoints
-    _.cloneDeep(animations[animation].stylePoints[0])
-  )
-  animations[animation].stylePoints[length - 1].point = 1
+  let length = animations[animation].stylePoints.length
+  let newCurr = 0
+  if (length === 1){
+    // save the new length of the stylePoints list
+    length = animations[animation].stylePoints.push(
+      // push a copy of stylePoint 0 to stylePoints
+      _.cloneDeep(animations[animation].stylePoints[0])
+    )
+    // set the new style point at 100%
+    animations[animation].stylePoints[length - 1].point = 1
+    newCurr = length - 1
+  }
+  else{
+    animations[animation].stylePoints.splice( length-1, 0,
+      _.cloneDeep(animations[animation].stylePoints[0])
+    )
+    length = animations[animation].stylePoints.length
+    let newPoint = animations[animation].stylePoints[length - 3].point + 0.2
+    newPoint = newPoint > 1 ? 0.99 : newPoint
+    console.log(newPoint)
+    animations[animation].stylePoints[length - 2].point = newPoint
+    newCurr = length - 2
+  }
   const currentlyEditing = props.currentlyEditing
-  currentlyEditing.stylePoint = length - 1
+  currentlyEditing.stylePoint = newCurr
   props.setPlaygroundState({ 
     animations,
     currentlyEditing
@@ -66,24 +76,41 @@ export default function WordArtControls(props){
   const animation = props.currentlyEditing.animation
   const stylePoint = props.currentlyEditing.stylePoint
   const currentStyle = props.animations[animation].stylePoints[stylePoint]
+  console.log(currentStyle)
+  const styleCtrlPts = props.animations[animation].stylePoints.map((s,i)=>(
+    {value: s.point, label: s.point*100+'%', index: i}
+  ))
 
   return(
     <div>
 
-      <div>
-        <button className='small' onClick={()=>handleAddStylePoint(props)}>Add style point</button> 
-      </div>
-      
-      {props.animations[animation].stylePoints.map((s,i) =>(
-        <p onClick={()=>handleChangeEditPoint(i,props)} key={i}>
-          { i === props.currentlyEditing.stylePoint && 'currently editing point '}
-          {s.point}
-        </p>
-      ))}
 
-      <StylePointsControls {...props} />
 
-      <List id='controls'>
+      <ul id='controls'>
+
+        <li>
+          <button className='small' onClick={()=>handleAddStylePoint(props)}>Add style point</button> 
+          
+          {styleCtrlPts.length > 1 && 
+            <>
+              <label id='points-ctrl'>Edit a style point</label>
+              <Select
+                aria-labelledby='points-ctrl' 
+                options={styleCtrlPts} 
+                value={{
+                  value:styleCtrlPts[props.currentlyEditing.stylePoint].value, 
+                  label:styleCtrlPts[props.currentlyEditing.stylePoint].label,
+                  index:props.currentlyEditing.stylePoint
+                }}
+                onChange={(e)=>handleChangeEditPoint(e.index,props)}
+              />
+            </>
+          }
+          {styleCtrlPts.length > 2 &&
+          <>
+          </>
+          }
+        </li>
         <li>
           <FontOptions {...props}/>
         </li>
@@ -138,7 +165,7 @@ export default function WordArtControls(props){
             onChange={e=>handleSelect(e,'easing',props)}
           />
         </li>
-      </List>
+      </ul>
     </div>
   )
 }
