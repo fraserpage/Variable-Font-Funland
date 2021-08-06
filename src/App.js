@@ -6,8 +6,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { getUserFromToken } from './utils/authUtils';
 // Components, Pages
 import Nav from './components/Nav/Nav';
-import LoginPage from './pages/LoginPage/LoginPage'
-import SignUpPage from './pages/SignUpPage/SignUpPage';
+import LoginModal from './components/LoginModal/LoginModal'
+import SignUpModal from './components/SignUpModal/SignUpModal';
 import HomePage from './pages/HomePage/HomePage';
 import PlaygroundPage from './pages/PlaygroundPage/PlaygroundPage';
 
@@ -27,42 +27,52 @@ class App extends Component {
     })
   }
 
+  handleShowModal = (modal) =>{
+    this.setState({modal:modal})
+  }
+
   render() {
     return (
       <>
-        <Nav user={this.state.user} setUserInState={this.setUserInState}/>
+        <Nav 
+          user={this.state.user} 
+          setUserInState={this.setUserInState}
+          handleShowModal={this.handleShowModal}
+        />
         <main className="App">
           <Switch>
-            
-            <Route path='/login' render={(props) =>(
-              this.state.user ? 
-                <Redirect to='/' /> 
-                :
-                <div> 
-                <LoginPage setUserInState={this.setUserInState}/>
-                </div>
-            )}/>
-          
-            <Route path='/sign-up' render={(props) =>(
-              this.state.user ? 
-                <Redirect to='/' /> 
-                :
-                <SignUpPage setUserInState={this.setUserInState}/>
-            )}/>
-
             <Route path='/playground/:id' render={(props) => (
-              <PlaygroundPage locationState={props.location.state} id={props.match.params.id}/>
+              <PlaygroundPage 
+                locationState={props.location.state} 
+                id={props.match.params.id} 
+                user={this.state.user}
+              />
             )}/>
-
             <Route path='/playground' render={(props) => (
-              <PlaygroundPage />
+              <PlaygroundPage
+                {...props} 
+                user={this.state.user} 
+              />
             )}/>
-
             <Route path='/' render={(props) => (
               <HomePage/>
             )}/>
             <Redirect to='/' />
           </Switch>
+
+          {this.state.modal === 'login' &&
+            <LoginModal 
+              setUserInState={this.setUserInState}
+              handleShowModal={this.handleShowModal}
+            />
+          }
+          {this.state.modal === 'signup' &&    
+            <SignUpModal 
+              setUserInState={this.setUserInState}
+              handleShowModal={this.handleShowModal}
+            />
+          }
+
         </main>
       </>
     );
