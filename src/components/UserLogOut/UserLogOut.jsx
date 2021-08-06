@@ -7,15 +7,17 @@ class UserLogOut extends React.Component {
   handleLogout = () =>{
     logout()
     this.props.setUserInState(null)
-    console.log('logout')
   }
 
   render() {
     return (
         <div className='UserLogOut'>
-          <div>Name: {this.props.user.name}</div>
-          <div>Email: {this.props.user.email}</div>
-          <button onClick={this.handleLogout} className="btn-sm">Logout</button>
+          <div>{this.props.user.name[0]}</div>
+          <div>
+            <div>Name: {this.props.user.name}</div>
+            <div>Email: {this.props.user.email}</div>
+            <button className='small' onClick={this.handleLogout}>Logout</button>
+          </div>
         </div>
     );
   }
