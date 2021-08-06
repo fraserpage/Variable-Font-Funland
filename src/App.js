@@ -50,6 +50,10 @@ class App extends Component {
                 <SignUpPage setUserInState={this.setUserInState}/>
             )}/>
 
+            <Route path='/playground/:id' render={(props) => (
+              <PlaygroundPage locationState={props.location.state} id={props.match.params.id}/>
+            )}/>
+
             <Route path='/playground' render={(props) => (
               <PlaygroundPage />
             )}/>
