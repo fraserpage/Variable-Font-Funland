@@ -28,9 +28,8 @@ Visitors can click on a piece of text art to open it up in the Playground view. 
 ## Next Steps
 - 
 - Link to GitHub from app
-- List creator and font on gallery page for each piece of 'word art'
 - Allow filtering gallery view based on creator and font
-- Full user based CRUD
+- ~~Full user based CRUD~~
 - HTML/CSS export for fonts
 - Image download of 'word art'
 - Greater selection of fonts
