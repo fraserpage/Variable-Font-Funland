@@ -2,7 +2,8 @@ const WordArt = require('../models/wordArt')
 
 module.exports = {
   index,
-  create
+  create,
+  show
 }
 
 async function create(req,res){
@@ -17,5 +18,10 @@ async function create(req,res){
 
 async function index(req,res){
   const wordArt = await WordArt.find({})
+  res.status(200).json(wordArt)
+}
+
+async function show(req,res){
+  const wordArt = await WordArt.findById(req.params.id)
   res.status(200).json(wordArt)
 }
