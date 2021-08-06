@@ -20,23 +20,21 @@ export default class SignUpPage extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault()
     try{
-      let token = registerNewUser({
+      let userDoc = await registerNewUser({
         name: this.state.name, 
         email: this.state.email, 
         password: this.state.password
       })
-
-      if (token && !token._id) {
-        throw token;
-      } 
-      else {
-        const userDoc = JSON.parse(atob(token.split('.')[1])).user; 
-        // Decode the token + put user document into state
-        this.props.setUserInState(userDoc)
+      this.props.setUserInState(userDoc)
+    } 
+    catch (err) {
+      console.log(err)
+      if (err.code === 11000 && err.keyPattern.email){
+        this.setState({ error: 'That email is already registered!' });
       }
-    } catch (err) {
-      console.log("SignUpForm error", err)
-      this.setState({ error: 'Sign Up Failed - Try Again' });
+      else{
+        this.setState({ error: 'Sign Up Failed - Try Again' });
+      }
     }
   }
 

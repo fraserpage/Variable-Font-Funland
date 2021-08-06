@@ -18,7 +18,7 @@ class App extends Component {
 
   componentDidMount(){
     const user = getUserFromToken()
-    if (user) this.setState(user)   
+    if (user) this.setState({user})   
   }
 
   setUserInState = (incomingUserData) => {
@@ -30,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Nav user={this.state.user} />
+        <Nav user={this.state.user} setUserInState={this.setUserInState}/>
         <main className="App">
           <Switch>
             

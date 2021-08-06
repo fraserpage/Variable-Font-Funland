@@ -27,6 +27,7 @@ export default class LoginPage extends Component {
       } 
       else {
         this.props.setUserInState(token)
+        this.props.history.push('/')
       }
     
   }
