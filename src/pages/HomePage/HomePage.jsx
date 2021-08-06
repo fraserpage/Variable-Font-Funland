@@ -1,6 +1,9 @@
+import './HomePage.css'
 import { Component } from "react";
 import WordArt from "../../components/WordArt/WordArt";
 import { getAllWordArt } from "../../utils/wordArtUtils";
+import { loadFont } from "../../utils/fontUtils";
+import Masonry from 'react-masonry-css'
 
 export default class HomePage extends Component{
 
@@ -10,18 +13,27 @@ export default class HomePage extends Component{
 
   async componentDidMount(){
     const wordArt = await getAllWordArt()
+    wordArt.forEach(w=>loadFont(w.font))
     this.setState({wordArt})
   }
 
   render(){
     return(
-      <div>
-        <h1>Home page</h1>
-          {this.state.wordArt.map(w => (
-            <WordArt key={w._id} {...w} />
+      <Masonry
+        breakpointCols={{
+          default: 4,
+          1100: 3,
+          700: 2,
+          500: 1
+        }}
+        className="masonry-grid"
+        columnClassName="masonry-grid_column">
+        {this.state.wordArt.map(w => (
+            <div key={w._id} className="masonry-grid_item">
+              <WordArt  {...w} />
+            </div>
           ))}
-        
-      </div>
+      </Masonry>
     )
   }
 }
