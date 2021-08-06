@@ -6,7 +6,11 @@ export function getFontProps(font){
   return props
 }
 
-export function loadFont(font, vars){
+export function loadFont(font){
+  if (document.documentElement.classList.contains(
+    `wf-${font.replace(' ','').toLowerCase()}-n4-active`
+  )) return  
+  const {vars} = getFontProps(font)
   WebFont.load({
     google: {
       families: [`${font}:${vars.map(v=>v.var).join(",")}@${vars.map(v=>v.min+'..'+v.max).join(",")}&display=swap`],

@@ -54,8 +54,7 @@ export default class PlaygroundPage extends React.Component {
       const wordArt = await getOneWordArt(this.props.id)
       this.setState({...wordArt})
     }
-    const fontProps = getFontProps(this.state.font)
-    loadFont(this.state.font, fontProps.vars)
+    loadFont(this.state.font)
   }
 
   setPlaygroundState = (state) =>{
