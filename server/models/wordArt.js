@@ -4,17 +4,28 @@ const wordArtSchema = new mongoose.Schema({
   text: {
     type: String, 
     required: true,
-    maxLength:30
+    maxLength:200
   },
   font: {
     type: String, 
     required: true,
     maxLength:30
   },
-  vars : [{
-    var : String,
-    val : Number
-     }]
+  animations : [{
+    position : Number,
+    easing : String,
+    stylePoints: [{
+      point: Number,
+      fontSize: Number,
+      letterSpacing: Number,
+      lineHeight: Number,
+      vars : [{
+        var : String,
+        val : Number
+       }]
+    }]
+  }],
+  
 }, {
   timestamps: true
 });
