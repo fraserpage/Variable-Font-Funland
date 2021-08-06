@@ -1,0 +1,11 @@
+.playground {
+  display: flex;
+  gap: 5vmin;
+  margin: 0 -3vmin;
+}
+
+.sidebar {order: -1;}
+
+.main {
+  flex: 1;
+}
