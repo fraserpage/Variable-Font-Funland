@@ -17,9 +17,10 @@ export default class HomePage extends Component{
     return(
       <div>
         <h1>Home page</h1>
-        <div>
-          {this.state.wordArt.map(w => <WordArt key={w._id} {...w} />)}
-        </div>
+          {this.state.wordArt.map(w => (
+            <WordArt key={w._id} {...w} />
+          ))}
+        
       </div>
     )
   }
