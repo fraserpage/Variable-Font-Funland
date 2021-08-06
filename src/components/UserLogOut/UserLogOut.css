@@ -1,0 +1,45 @@
+nav {
+  position: relative;
+}
+.UserLogOut{
+  margin-left:auto;
+}
+
+.UserLogOut > div:first-child {
+  background: black;
+  color:white;
+  width:1.5em;
+  height:1.5em;
+  border-radius:100%;
+  text-align:center;
+  line-height:1.6em;
+  --wght:600;
+  z-index: 2;
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.UserLogOut > div:last-child{
+  display:none;
+}
+
+.UserLogOut:hover > div:last-child{
+  display:block;
+  position:absolute;
+  background-color: white;
+  right: 1.2vmin;
+  padding: 3em 0.75em 0;
+  top: 1.2vmin;
+  box-shadow: var(--box-shadow);
+  border-radius: 1em;
+  z-index: 1;
+}
+
+.UserLogOut button {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
