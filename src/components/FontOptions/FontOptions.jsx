@@ -11,8 +11,7 @@ const handleSelect = (e, props) =>{
   stylePoints.forEach((e,i,a)=>(
     a[i].vars = _.cloneDeep(fontProps.vars)
   ))
-  // this.setState({...fontProps})
-  loadFont(fontProps.font, fontProps.vars)
+  loadFont(fontProps.font)
 
   props.setPlaygroundState({ 
     animations,
