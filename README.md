@@ -26,7 +26,6 @@ Visitors can click on a piece of text art to open it up in the Playground view. 
 - [ERD](https://lucid.app/lucidchart/23d071e7-a07f-450e-96eb-a0a44466b026/edit?page=0_0#) - _slightly out of date_
 
 ## Next Steps
-- 
 - Link to GitHub from app
 - Allow filtering gallery view based on creator and font
 - ~~Full user based CRUD~~
